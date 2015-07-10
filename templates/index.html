@@ -1,0 +1,22 @@
+<html>
+    <body>
+    <h1>Handlebars JS Example</h1>
+        <script id="some-template" type="text/x-handlebars-template"> <table>
+            <thead>
+                <th>Name</th>
+                <th>Job Title</th>
+                <th>Twitter</th>
+            </thead>
+            <tbody>
+                {{#users}}
+                <tr>
+                    <td>{{fullName person}}</td>
+                    <td>{{jobTitle}}</td>
+                    <td><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></td>
+                </tr>
+                {{/users}}
+            </tbody>
+        </table>
+        </script>
+    <body>
+</html>

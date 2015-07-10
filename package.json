@@ -1,0 +1,33 @@
+{
+  "name": "cipolla-test-theme",
+  "version": "1.0.0",
+  "description": "a cipolla test theme ",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -t 100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.corp.xoom.com:7999/pa/cipolla-test-theme.git"
+  },
+  "keywords": [
+    "cipolla",
+    "handlebars",
+    "template",
+    "markdown",
+    "api",
+    "blueprint"
+  ],
+  "author": "Oscar Funes",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^3.0.3",
+    "highlight.js": "^8.6.0",
+    "hoek": "^2.14.0",
+    "marked": "^0.3.3"
+  },
+  "devDependencies": {
+    "code": "^1.4.1",
+    "lab": "^5.13.0"
+  }
+}

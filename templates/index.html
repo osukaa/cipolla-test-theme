@@ -1,26 +1,9 @@
 <html>
     <body>
-    <h1>Handlebars JS Example</h1>
-        <script id="some-template" type="text/x-handlebars-template"> <table>
-            <thead>
-                <th>Name</th>
-                <th>Job Title</th>
-                <th>Twitter</th>
-                <th>mark</th>
-                <th>code</th>
-            </thead>
-            <tbody>
-                {{#users}}
-                <tr>
-                    <td>{{person.firstName}}{{person.lastName}}</td>
-                    <td>{{jobTitle}}</td>
-                    <td><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></td>
-                    <td>{{{md mark}}}</td>
-                    <td><{{{md code}}}/td>
-                </tr>
-                {{/users}}
-            </tbody>
-        </table>
-        </script>
+    <h1>{{name}}</h1>
+    <h2>{{md description}}</h2>
+    {{#metadata}}
+        <h3>{{name}}</h3><p>{{value}}</p>
+    {{/metadata}}
     <body>
 </html>

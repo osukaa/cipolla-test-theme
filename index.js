@@ -6,7 +6,7 @@ var fs = require('fs');
 var internals = {}
 
 var defaults = {
-    template: __dirname + './templates/index.html'
+    template: __dirname + '/templates/index.html'
 }
 
 marked.setOptions({

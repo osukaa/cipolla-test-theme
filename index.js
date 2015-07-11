@@ -18,7 +18,7 @@ marked.setOptions({
 
 handlebars.registerHelper('md', function (content) {
 
-    return marked(content);
+    return new handlebars.SafeString(marked(content));;
 });
 
 module.exports = internals.TestTheme = function (options) {

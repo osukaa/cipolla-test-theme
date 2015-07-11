@@ -9,31 +9,62 @@ var defaults = {
     template: './templates/index.html'
 }
 
-handlebars.registerHelper('md', function (content) {
+marked.setOptions({
+    highlight: function (code) {
 
-    return marked(content,{
-        highlight: function (code) {
-            return require('highlight.js').highlightAuto(code).value;
-        }
-    });
+        return require('highlight.js').highlightAuto(code).value;
+  }
 });
 
-internals.setOptions = function (options) {
+handlebars.registerHelper('md', function (content) {
 
-    internals.settings = hoek.applyToDefaults(defaults, options);
+    return marked(content);
+});
+
+module.exports = internals.TestTheme = function (options) {
+
+    if (!(this instanceof internals.TestTheme)) {
+           return new internals.TestTheme(options);
+    }
+    
+    options = options || {};
+    this._settings = hoek.applyToDefaults(defaults, options);
+}
+
+internals.TestTheme.prototype.setOptions = function (options) {
+
+    options = options || {};
+    this._settings = hoek.applyToDefaults(this._settings, options);
 };
 
-internals.render = function (blueprint, callback) {
+internals.TestTheme.prototype.render = function (blueprint, callback) {
+    
+    fs.readFile(this._settings.template, { encoding: 'utf8'}, function (err, htmlTemplate){
 
-    var template = handlebars.compile(internals.settings.template,blueprint);
-    return callback(null,template(blueprint));
+        if (err) {
+            return callback(err);
+        }
+        var template = handlebars.compile(htmlTemplate);
+        var html = template(blueprint);
+        return callback(null,html);
+    })
 };
 
-internals.renderToFile = function (blueprint, pathToFile, callback) {
+internals.TestTheme.prototype.renderToFile = function (blueprint, pathToFile, callback) {
 
-    var template = handlebars.compile(internals.settings.template, blueprint);
-    var html = template(blueprint);
-    fs.writeFile(pathToFile, html, function (err) {
-        return callback(err);
+    fs.readFile(this._settings.template, {encoding: 'utf8'}, function (err, htmlTemplate) {
+
+        if (err) {
+            return callback(err);
+        }
+        var template = handlebars.compile(htmlTemplate, blueprint);
+        var html = template(blueprint);
+        fs.writeFile(pathToFile, html, function (err) {
+
+            if (err) {
+                return callback(err);
+            }
+            return callback(null);
+        });
     });
 };

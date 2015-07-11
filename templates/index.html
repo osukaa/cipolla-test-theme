@@ -6,13 +6,17 @@
                 <th>Name</th>
                 <th>Job Title</th>
                 <th>Twitter</th>
+                <th>mark</th>
+                <th>code</th>
             </thead>
             <tbody>
                 {{#users}}
                 <tr>
-                    <td>{{fullName person}}</td>
+                    <td>{{person.firstName}}{{person.lastName}}</td>
                     <td>{{jobTitle}}</td>
                     <td><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></td>
+                    <td>{{{md mark}}}</td>
+                    <td><{{{md code}}}/td>
                 </tr>
                 {{/users}}
             </tbody>
